@@ -1,0 +1,87 @@
+{
+  "name": "appium-lg-webos-driver",
+  "description": "LG WebOS support for Appium",
+  "keywords": [
+    "appium",
+    "LG",
+    "WebOS",
+    "testing",
+    "automation"
+  ],
+  "version": "0.0.1",
+  "author": "Jonathan Lipps <jlipps@headspin.io>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/headspinio/appium-lg-webos-driver.git"
+  },
+  "bugs": {
+    "url": "https://github.com/headspinio/appium-lg-webos-driver/issues"
+  },
+  "engines": {
+    "node": ">=14",
+    "npm": ">=8"
+  },
+  "bin": {},
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "index.js",
+    "lib",
+    "build"
+  ],
+  "dependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.2",
+    "@babel/eslint-parser": "^7.18.2",
+    "@babel/plugin-transform-runtime": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/register": "^7.17.7",
+    "@babel/runtime": "^7.18.3",
+    "appium-chromedriver": "^4.27.1",
+    "bluebird": "^3.7.2",
+    "lodash": "^4.17.21",
+    "get-port": "^5.1.1",
+    "source-map-support": "^0.5.21",
+    "teen_process": "^1.9.0"
+  },
+  "peerDependencies": {
+    "appium": "^2.0.0-beta.35"
+  },
+  "devDependencies": {
+    "@appium/eslint-config-appium": "^4.7.0",
+    "appium": "^2.0.0-beta.35",
+    "appium-lg-webos-driver": "file:.",
+    "babel-eslint": "^10.0.0",
+    "babel-plugin-source-map-support": "^2.1.3",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-mocha": "^6.3.0",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint": "^7.24.0",
+    "webdriverio": "^7.19.7"
+  },
+  "scripts": {
+    "build": "babel lib --out-dir=build/lib --copy-files",
+    "dev": "npm run build -- --watch",
+    "fix": "npm run lint -- --fix",
+    "lint": "eslint .",
+    "prepare": "npm run build",
+    "test": "npm run test:unit",
+    "test:e2e": "mocha --timeout 20s --slow 10s \"./test/e2e/**/*.spec.js\"",
+    "test:unit": "mocha \"./test/unit/**/*.spec.js\""
+  },
+  "engines": {
+    "node": ">=12",
+    "npm": ">=6"
+  },
+  "homepage": "https://github.com/headspinio/appium-lg-webos-driver#readme",
+  "appium": {
+    "driverName": "webos",
+    "automationName": "webOS",
+    "platformNames": [
+      "LGTV"
+    ],
+    "mainClass": "WebOSDriver"
+  }
+}
