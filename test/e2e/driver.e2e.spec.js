@@ -1,5 +1,5 @@
 import {main as startAppium} from 'appium';
-import {remote as wdio} from 'webdriverio';
+import {remote} from 'webdriverio';
 import getPort from 'get-port';
 
 const TEST_CAPS = {
@@ -10,27 +10,28 @@ const TEST_CAPS = {
 };
 const WDIO_OPTS = {
   hostname: 'localhost',
+  path: '/',
   connectionRetryCount: 0,
   capabilities: TEST_CAPS,
 };
 
-describe('WebOSDriver - E2E', function () {
+describe('WebOSDriver - E2E', function() {
   /** @type {import('@appium/types').AppiumServer} */
   let server;
   let port;
 
-  before(async function () {
-    port = await getPort({port: 4723});
+  before(async function() {
+    port = await getPort();
     server = await startAppium({port});
   });
 
-  after(async function () {
+  after(async function() {
     await server.close();
   });
 
-  it('should start and stop a session', async function () {
+  it('should start and stop a session', async function() {
     /** @type WDBrowser */
-    const driver = await wdio({...WDIO_OPTS, port});
+    const driver = await remote({...WDIO_OPTS, port});
     await driver.deleteSession();
   });
 });
