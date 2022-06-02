@@ -3,11 +3,21 @@ import {remote} from 'webdriverio';
 import getPort from 'get-port';
 
 const TEST_APP = process.env.TEST_APP;
+const TEST_DEVICE = process.env.TEST_DEVICE;
+
+if (!TEST_APP || !TEST_DEVICE) {
+  throw new Error(`
+    The following env vars must be set for E2E tests to work:
+    - TEST_APP: path to the suitest watchme .ipk file
+    - TEST_DEVICE: the name/id of a connected tv device, as shown in
+      ares-setup-device
+  `);
+}
 
 const TEST_CAPS = {
   platformName: 'LGTV',
   'appium:automationName': 'WebOS',
-  'appium:deviceName': 'LGTV',
+  'appium:deviceName': TEST_DEVICE,
   'appium:app': TEST_APP,
 };
 const WDIO_OPTS = {
