@@ -4,6 +4,7 @@ import getPort from 'get-port';
 
 const TEST_APP = process.env.TEST_APP;
 const TEST_DEVICE = process.env.TEST_DEVICE;
+const TEST_APP_ID = 'com.suitest.watchme.app';
 
 if (!TEST_APP || !TEST_DEVICE) {
   throw new Error(`
@@ -18,7 +19,7 @@ const TEST_CAPS = {
   platformName: 'LGTV',
   'appium:automationName': 'WebOS',
   'appium:deviceName': TEST_DEVICE,
-  'appium:app': TEST_APP,
+  'appium:appId': TEST_APP_ID,
 };
 const WDIO_OPTS = {
   hostname: 'localhost',
@@ -41,7 +42,7 @@ describe('WebOSDriver - E2E', function() {
     await server.close();
   });
 
-  it('should start and stop a session', async function() {
+  it('should start and stop a session via pre-installed app id', async function() {
     /** @type WDBrowser */
     const driver = await remote({...WDIO_OPTS, port});
     await driver.deleteSession();
