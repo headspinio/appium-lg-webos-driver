@@ -2,11 +2,13 @@ import {main as startAppium} from 'appium';
 import {remote} from 'webdriverio';
 import getPort from 'get-port';
 
+const TEST_APP = process.env.TEST_APP;
+
 const TEST_CAPS = {
   platformName: 'LGTV',
   'appium:automationName': 'WebOS',
   'appium:deviceName': 'LGTV',
-  'appium:app': process.env.TEST_APP,
+  'appium:app': TEST_APP,
 };
 const WDIO_OPTS = {
   hostname: 'localhost',
