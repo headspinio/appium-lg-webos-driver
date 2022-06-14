@@ -63,6 +63,20 @@ describe('WebOSDriver - E2E', function() {
     it('should get the page source', async function() {
       await driver.getPageSource().should.eventually.contain('WatchMe Demo');
     });
+
+    it('should send remote keys', async function() {
+      await driver.executeScript('webos: pressKey', [{key: 'right'}]);
+      await driver.executeScript('webos: pressKey', [{key: 'right'}]);
+      await driver.executeScript('webos: pressKey', [{key: 'enter'}]);
+      await driver.$('//video[contains(@src, "llamigos")]').waitForExist({timeout: 5000});
+      await driver.waitUntil(async () => {
+        const script = 'return document.querySelector("video").currentTime';
+        const curPlayingTime = await driver.executeScript(script, []);
+        return curPlayingTime > 1;
+      }, {timeout: 5000});
+      await driver.executeScript('webos: pressKey', [{key: 'back'}]);
+      await driver.$('//div[@data-testid="video3"]').waitForExist({timeout: 5000});
+    });
   });
 });
 

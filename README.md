@@ -26,7 +26,7 @@ package in your `package.json`)
 ## Capabilities
 
 |Capability|Description|
-|--|--|
+|----------|-----------|
 |`platformName`|[Required] Must be `LGTV`|
 |`appium:deviceName`|[Required] The name of the connected device, as it shows up in `ares-launch --device-list`|
 |`appium:deviceHost`|[Required] The IP address of the connected device, as it shows up in `ares-launch --device-list`|
@@ -37,6 +37,38 @@ package in your `package.json`)
 |`appium:autoExtendDevMode`|[Optional; default `true`] Whether you want Appium to extend the dev mode timer on the device whenever a new session starts.|
 |`appium:appLaunchParams`|[Optional; default `{}`] A key/value object of app launch param to be passed to `ares-launch`|
 |`appium:appLaunchCooldown`|[Optional; default `3000`] How many ms to wait after triggering app launch to attempt to connect to it via Chromedriver.|
+
+## Supported Commands
+
+These are the WebDriver (and extension) commands supported by this driver. Note that in its normal
+operation, this driver acts as a Chromedriver proxy. Thus, after a session is created, *all*
+typical WebDriver commands are available (find element, get page source, click element, etc...).
+Some commands may not make sense in a TV context (dealing with multiple windows, for example).
+
+|Command|Parameters|Description|
+|-------|----------|-----------|
+|`createSession`|`capabilities`|Start a session using capabilities from the list above. This will launch your app in debug mode and start a Chromedriver proxy to the underyling TV browser|
+|`deleteSession`||Stop a session|
+|`executeScript`|`script`, `args`|In the typical case, this executes JavaScript within the browser, just like the typical WebDriver method. If the script is prefixed with `webos: `, the driver will attempt to find a special "webOS command" to run with your provided args.|
+
+### webOS Commands
+
+As a way to provide access to additional commands unique to the webOS platform, this driver has
+extended the `executeScript` command in such a way that if you pass in a script like `webos:
+scriptName`, then the driver will execute a special webOS command named `scriptName`. The following
+webOS commands are available (note that in all these, the parameters list includes named parameters
+that must be present in a JSON object, constituting the first argument of the `executeScript` args
+list):
+
+|webOS Command|Parameters|Description|
+|-------------|----------|-----------|
+|`pressKey`|`key`, `duration`|Press a remote key for `duration` milliseconds (defaults to 100). The value of `key` must be one of: `enter`, `right`, `left`, `up`, `down`, `back`, `playPause`, `fwd`, `rev`|
+
+Example of using a webOS command (in the WebdriverIO JS client):
+
+```js
+await driver.executeScript('webos: pressKey', [{key: 'right', duration: 200}]);
+```
 
 ## Development
 
