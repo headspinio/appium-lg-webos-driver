@@ -2,7 +2,7 @@
 
 An Appium 2.x driver for LG WebOS apps
 
-:warn: UNDER ACTIVE DEVELOPMENT :warn:
+⚠️  UNDER ACTIVE DEVELOPMENT ⚠️
 
 ## Installation
 
@@ -17,11 +17,11 @@ package in your `package.json`)
 
 ## Additional Requirements
 
-- LG SDK
-- `LG_WEBOS_TV_SDK_HOME` env var set
-- Device setup and available in `ares-setup-device`
-- Should be able to run `ares-device-info --device <name>` and have it work
-- `ar` (library archives) CLI utility available (for unarchiving IPKs)
+- You must have the [LG webOS SDK](https://webostv.developer.lge.com/sdk/webos-tv-sdk/introduction/)
+- You must have the `LG_WEBOS_TV_SDK_HOME` env var set as described in the SDK setup guide
+- You must have an LG webOS TV device on the same network as your Appium host, with all ports accessible to the network
+- You must have your TV device set up and showing as available by using the [`ares-setup-device`](https://www.webosose.org/docs/tools/sdk/cli/cli-user-guide/#ares-setup-device) CLI tool
+- You should be able to run `ares-device-info --device <name>` and have it show the correct details for your connected device
 
 ## Capabilities
 
