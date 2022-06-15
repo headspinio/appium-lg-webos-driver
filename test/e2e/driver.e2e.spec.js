@@ -23,6 +23,8 @@ const TEST_CAPS = {
   'appium:deviceName': TEST_DEVICE,
   'appium:deviceHost': TEST_DEVICE_HOST,
   'appium:appId': TEST_APP_ID,
+  'appium:app': TEST_APP,
+  'appium:fullReset': true,
 };
 const WDIO_OPTS = {
   hostname: 'localhost',
@@ -73,7 +75,7 @@ describe('WebOSDriver - E2E', function() {
         const script = 'return document.querySelector("video").currentTime';
         const curPlayingTime = await driver.executeScript(script, []);
         return curPlayingTime > 1;
-      }, {timeout: 5000});
+      }, {timeout: 8000});
       await driver.executeScript('webos: pressKey', [{key: 'back'}]);
       await driver.$('//div[@data-testid="video3"]').waitForExist({timeout: 5000});
     });

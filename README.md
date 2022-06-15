@@ -2,7 +2,7 @@
 
 An Appium 2.x driver for LG WebOS apps
 
-!!! UNDER HEAVY DEVELOPMENT, NOT READY FOR GENERAL USE !!!
+:warn: UNDER ACTIVE DEVELOPMENT :warn:
 
 ## Installation
 
@@ -30,13 +30,15 @@ package in your `package.json`)
 |`platformName`|[Required] Must be `LGTV`|
 |`appium:deviceName`|[Required] The name of the connected device, as it shows up in `ares-launch --device-list`|
 |`appium:deviceHost`|[Required] The IP address of the connected device, as it shows up in `ares-launch --device-list`|
-|`appium:app`|An absolute path to your `.ipk` app file, if you want Appium to install the app. Exclusive with `appium:appId`|
-|`appium:appId`|The app package ID, if you want Appium to use an app already on the TV. Exclusive with `appium:app`|
+|`appium:appId`|[Required] The app package ID, if you want Appium to use an app already on the TV. Exclusive with `appium:app`|
+|`appium:app`|[Optional] An absolute path to your `.ipk` app file, if you want Appium to install the app.|
 |`appium:debuggerPort`|[Optional; default `9998`] The port on the device exposed for remote Chromium debugging.|
 |`appium:chromedriverExecutable`|[Optional] Most LG TVs run a very old version of Chrome. Because this driver uses Chromedriver under the hood, you'll need to have a very old version of Chromedriver handy that works with the version of Chrome backing the apps on your TV. In our testing, we've found Chromedriver 2.36 to work with most TVs. You need to tell the driver where you've installed this version of Chromedriver using the `appium:chromedriverExecutable` capability, passing in an absolute path to the Chromedriver binary.|
 |`appium:autoExtendDevMode`|[Optional; default `true`] Whether you want Appium to extend the dev mode timer on the device whenever a new session starts.|
 |`appium:appLaunchParams`|[Optional; default `{}`] A key/value object of app launch param to be passed to `ares-launch`|
 |`appium:appLaunchCooldown`|[Optional; default `3000`] How many ms to wait after triggering app launch to attempt to connect to it via Chromedriver.|
+|`appium:fullReset`|[Optional; default `false`] If this is set to `true`, the driver will: uninstall the app before starting the session. Cannot be used with `appium:noReset`|
+|`appium:noReset`|[Optional; default `false`] If this is set to `true`, the driver will: skip resetting local storage on session start. Cannot be used with `appium:fullReset`|
 
 ## Supported Commands
 
