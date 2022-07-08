@@ -27,7 +27,7 @@ const TEST_CAPS = {
   'appium:fullReset': true,
 };
 const WDIO_OPTS = {
-  hostname: 'localhost',
+  hostname: '0.0.0.0',
   path: '/',
   connectionRetryCount: 0,
   capabilities: TEST_CAPS,
@@ -36,11 +36,12 @@ const WDIO_OPTS = {
 describe('WebOSDriver - E2E', function() {
   /** @type {import('@appium/types').AppiumServer} */
   let server;
+  /** @type {number} */
   let port;
 
   before(async function() {
     port = await getPort();
-    server = await startAppium({port});
+    server = /** @type {import('@appium/types').AppiumServer} */(await startAppium({port}));
   });
 
   after(async function() {
@@ -48,7 +49,7 @@ describe('WebOSDriver - E2E', function() {
   });
 
   describe('session with pre-installed app id', function() {
-    /** @type WDBrowser */
+    /** @type {WebdriverIO.Browser} */
     let driver;
 
     before(async function() {
@@ -59,7 +60,7 @@ describe('WebOSDriver - E2E', function() {
     });
 
     it('should start and stop a session via pre-installed app id', function() {
-      should.exist(driver.capabilities.deviceInfo);
+      should.exist(/** @type {import('appium-lg-webos-driver').WebOSCapabilities} */(driver.capabilities).deviceInfo);
     });
 
     it('should get the page source', async function() {
