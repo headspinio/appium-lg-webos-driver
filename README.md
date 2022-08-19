@@ -40,6 +40,7 @@ package in your `package.json`)
 |`appium:appLaunchCooldown`|[Optional; default `3000`] How many ms to wait after triggering app launch to attempt to connect to it via Chromedriver.|
 |`appium:fullReset`|[Optional; default `false`] If this is set to `true`, the driver will: uninstall the app before starting the session. Cannot be used with `appium:noReset`|
 |`appium:noReset`|[Optional; default `false`] If this is set to `true`, the driver will: skip resetting local storage on session start. Cannot be used with `appium:fullReset`|
+|`appium:remoteOnly`|[Optiona; default `false`] If this is set to `true`, the driver will not attempt to start Chromedriver and communicate via the debug protocol to the application. Instead the app will be launched, and nothing else. You will only have access to remote control commands in a "fire-and-forget" fashion. Useful when dealing with non-web-based apps.|
 
 ## Supported Commands
 

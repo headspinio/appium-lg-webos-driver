@@ -47,7 +47,7 @@
     "teen_process": "^1.9.0"
   },
   "peerDependencies": {
-    "appium": "^2.0.0-beta.35"
+    "appium": "^2.0.0-beta.43"
   },
   "devDependencies": {
     "@appium/eslint-config-appium": "^6.0.2",
@@ -55,7 +55,7 @@
     "@types/bluebird": "^3.5.36",
     "@types/node": "^17.0.38",
     "@types/teen_process": "^1.16.0",
-    "appium": "^2.0.0-beta.39",
+    "appium": "^2.0.0-beta.43",
     "appium-lg-webos-driver": "file:.",
     "babel-eslint": "^10.0.0",
     "babel-plugin-source-map-support": "^2.1.3",
