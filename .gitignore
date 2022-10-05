@@ -3,5 +3,5 @@ build
 *.log
 .DS_Store
 coverage
-package-lock.json
 client-key.txt
+*.ipk
