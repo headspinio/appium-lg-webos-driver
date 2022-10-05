@@ -1,21 +1,25 @@
 import {main as startAppium} from 'appium';
 import {remote} from 'webdriverio';
+import {Env} from '@humanwhocodes/env';
 import getPort from 'get-port';
+import { KEYS } from '../../lib/keys';
 
-const TEST_APP = process.env.TEST_APP;
-const TEST_DEVICE = process.env.TEST_DEVICE;
-const TEST_DEVICE_HOST = process.env.TEST_DEVICE_HOST;
-const TEST_APP_ID = 'com.suitest.watchme.app';
+const env = new Env();
 
-if (!TEST_APP || !TEST_DEVICE || !TEST_DEVICE_HOST) {
+let TEST_APP, TEST_DEVICE, TEST_DEVICE_HOST;
+try {
+  ({TEST_APP, TEST_DEVICE, TEST_DEVICE_HOST} = env.required);
+} catch {
   throw new Error(`
     The following env vars must be set for E2E tests to work:
     - TEST_APP: path to the suitest watchme .ipk file
     - TEST_DEVICE: the name/id of a connected tv device, as shown in
       ares-setup-device
     - TEST_DEVICE_HOST: the IP address of the connected TV
-  `);
+`);
 }
+
+const TEST_APP_ID = 'com.suitest.watchme.app';
 
 const TEST_CAPS = {
   platformName: 'LGTV',
@@ -27,7 +31,7 @@ const TEST_CAPS = {
   'appium:fullReset': true,
 };
 const WDIO_OPTS = {
-  hostname: 'localhost',
+  hostname: '0.0.0.0',
   path: '/',
   connectionRetryCount: 0,
   capabilities: TEST_CAPS,
@@ -36,11 +40,12 @@ const WDIO_OPTS = {
 describe('WebOSDriver - E2E', function() {
   /** @type {import('@appium/types').AppiumServer} */
   let server;
+  /** @type {number} */
   let port;
 
   before(async function() {
     port = await getPort();
-    server = await startAppium({port});
+    server = /** @type {import('@appium/types').AppiumServer} */(await startAppium({port, loglevel: 'debug'}));
   });
 
   after(async function() {
@@ -48,18 +53,27 @@ describe('WebOSDriver - E2E', function() {
   });
 
   describe('session with pre-installed app id', function() {
-    /** @type WDBrowser */
+    /** @type {WebdriverIO.Browser} */
     let driver;
+
+    /**
+     * Convenience function
+     * @param {import('../../lib').Key} key
+     */
+    async function pressKey(key) {
+      await driver.executeScript('webos: pressKey', [{key}]);
+    }
 
     before(async function() {
       driver = await remote({...WDIO_OPTS, port});
     });
+
     after(async function() {
       await driver.deleteSession();
     });
 
     it('should start and stop a session via pre-installed app id', function() {
-      should.exist(driver.capabilities.deviceInfo);
+      should.exist(/** @type {import('appium-lg-webos-driver').WebOSCapabilities} */(driver.capabilities).deviceInfo);
     });
 
     it('should get the page source', async function() {
@@ -67,19 +81,17 @@ describe('WebOSDriver - E2E', function() {
     });
 
     it('should send remote keys', async function() {
-      await driver.executeScript('webos: pressKey', [{key: 'right'}]);
-      await driver.executeScript('webos: pressKey', [{key: 'right'}]);
-      await driver.executeScript('webos: pressKey', [{key: 'enter'}]);
-      await driver.$('//video[contains(@src, "llamigos")]').waitForExist({timeout: 5000});
+      await pressKey(KEYS.RIGHT);
+      await pressKey(KEYS.RIGHT);
+      await pressKey(KEYS.ENTER);
+      await driver.$('//video[contains(@src, "llamigos")]').waitForExist({timeout: 10000});
       await driver.waitUntil(async () => {
         const script = 'return document.querySelector("video").currentTime';
         const curPlayingTime = await driver.executeScript(script, []);
         return curPlayingTime > 1;
       }, {timeout: 8000});
-      await driver.executeScript('webos: pressKey', [{key: 'back'}]);
+      await pressKey(KEYS.BACK);
       await driver.$('//div[@data-testid="video3"]').waitForExist({timeout: 5000});
     });
   });
 });
-
-/** @typedef {import('webdriverio').Browser<'async'>} WDBrowser */
