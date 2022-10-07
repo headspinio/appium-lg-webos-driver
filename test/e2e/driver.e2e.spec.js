@@ -58,7 +58,7 @@ describe('WebOSDriver - E2E', function() {
 
     /**
      * Convenience function
-     * @param {import('../../lib').Key} key
+     * @param {import('../../lib/driver').Key} key
      */
     async function pressKey(key) {
       await driver.executeScript('webos: pressKey', [{key}]);
@@ -73,7 +73,7 @@ describe('WebOSDriver - E2E', function() {
     });
 
     it('should start and stop a session via pre-installed app id', function() {
-      should.exist(/** @type {import('appium-lg-webos-driver').WebOSCapabilities} */(driver.capabilities).deviceInfo);
+      should.exist(/** @type {import('../../lib/driver').WebOSCapabilities} */(driver.capabilities).deviceInfo);
     });
 
     it('should get the page source', async function() {
