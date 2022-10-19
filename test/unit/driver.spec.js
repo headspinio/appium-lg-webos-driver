@@ -30,6 +30,7 @@ describe('WebOSDriver', function () {
   });
 
   it('should be importable and instantiable', function () {
+    // @ts-expect-error - no args
     should.exist(new WebOSDriver());
   });
 });
