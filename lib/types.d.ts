@@ -78,3 +78,8 @@ export interface LGSocketClientOpts {
   saveClientKey?: boolean;
   remoteKeyCooldown?: number;
 }
+
+export interface Delta {
+  dx: number;
+  dy: number;
+}
