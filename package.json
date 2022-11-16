@@ -20,13 +20,15 @@
   "license": "Apache-2.0",
   "author": "Jonathan Lipps <jlipps@headspin.io>",
   "types": "./build/lib/index.d.ts",
+  "main": "index.js",
+  "bin": {},
   "directories": {
     "lib": "lib"
   },
   "files": [
     "index.js",
     "lib",
-    "build"
+    "build/lib"
   ],
   "scripts": {
     "build": "run-p \"build:*\"",
