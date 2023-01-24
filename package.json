@@ -1,6 +1,6 @@
 {
   "name": "appium-lg-webos-driver",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "LG WebOS support for Appium",
   "keywords": [
     "appium",
