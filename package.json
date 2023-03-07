@@ -68,6 +68,7 @@
     "@types/ws": "^8.5.3",
     "appium-chromedriver": "^5.1.1",
     "bluebird": "^3.7.2",
+    "env-paths": "2.2.1",
     "get-port": "^5.1.1",
     "lodash": "^4.17.21",
     "source-map-support": "^0.5.21",
