@@ -1,24 +1,10 @@
 {
+  "extends": "@appium/tsconfig/tsconfig.json",
   "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
     "checkJs": true,
-    "esModuleInterop": true,
-    "declaration": true,
-    "declarationMap": true,
-    "emitDeclarationOnly": true,
-    "module": "es2015",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "strict": true,
-    "removeComments": false,
-    "target": "es2015",
-    "types": ["node", "mocha", "chai", "chai-as-promised", "sinon-chai", "webdriverio/async"],
-    "outDir": "build",
-    "paths": {
-      "appium-lg-webos-driver": ["./lib"]
-    }
+    "lib": ["es2020", "dom"],
+    "types": ["node", "mocha", "chai", "sinon-chai"],
+    "outDir": "build"
   },
-  "include": ["test", "lib"],
-  "exclude": ["**/node_modules/**"]
+  "include": ["lib", "test"]
 }
