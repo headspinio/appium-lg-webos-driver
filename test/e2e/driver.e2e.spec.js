@@ -19,6 +19,8 @@ try {
 `);
 }
 
+const TEST_CHROMEDRIVER_EXE = env.get('TEST_CHROMEDRIVER_EXE');
+
 const TEST_APP_ID = 'com.suitest.watchme.app';
 
 const TEST_CAPS = {
@@ -29,6 +31,8 @@ const TEST_CAPS = {
   'appium:appId': TEST_APP_ID,
   'appium:app': TEST_APP,
   'appium:fullReset': true,
+  'appium:chromedriverExecutable': TEST_CHROMEDRIVER_EXE,
+  'appium:rcMode': 'rc',
 };
 const WDIO_OPTS = {
   hostname: '0.0.0.0',

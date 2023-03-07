@@ -34,7 +34,7 @@
   "scripts": {
     "build": "tsc -b",
     "clean": "npm run build -- --clean",
-    "dev": "npm rn build -- --watch",
+    "dev": "npm run build -- --watch",
     "fix": "npm run lint -- --fix",
     "install-driver": "appium driver install --source=local .",
     "lint": "eslint .",
