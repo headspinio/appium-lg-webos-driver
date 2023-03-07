@@ -28,23 +28,18 @@
   "files": [
     "index.js",
     "lib",
-    "build/lib"
+    "build/lib",
+    "!build/tsconfig.tsbuildinfo"
   ],
   "scripts": {
-    "build": "run-p \"build:*\"",
-    "build:distfiles": "babel lib --out-dir=build/lib --copy-files",
-    "build:types": "tsc -b",
-    "clean": "run-p \"clean:*\"",
-    "clean:distfiles": "rimraf \"./build/**/*.js\"",
-    "clean:types": "tsc -b --clean",
-    "dev": "run-p dev:distfiles dev:types",
-    "dev:distfiles": "npm run build:distfiles -- --watch",
-    "dev:types": "npm run build:types -- --watch",
+    "build": "tsc -b",
+    "clean": "npm run build -- --clean",
+    "dev": "npm rn build -- --watch",
     "fix": "npm run lint -- --fix",
     "install-driver": "appium driver install --source=local .",
     "lint": "eslint .",
     "reinstall": "npm run clean && npm ci",
-    "prepare": "husky install && npm run build:distfiles && npm run build:types || true",
+    "prepare": "husky install && npm run build",
     "test": "npm run test:unit",
     "test:e2e": "mocha --timeout 40s --slow 10s \"./test/e2e/**/*.spec.js\"",
     "test:unit": "mocha \"./test/unit/**/*.spec.js\""
@@ -71,29 +66,23 @@
     "env-paths": "2.2.1",
     "get-port": "^5.1.1",
     "lodash": "^4.17.21",
-    "source-map-support": "^0.5.21",
     "teen_process": "^1.9.0",
     "ws": "^8.8.1"
   },
   "devDependencies": {
     "@appium/eslint-config-appium": "^6.0.2",
-    "@appium/types": "0.5.0",
-    "@babel/cli": "^7.18.2",
-    "@babel/core": "^7.18.2",
-    "@babel/eslint-parser": "^7.18.2",
-    "@babel/preset-env": "^7.18.2",
-    "@babel/register": "^7.18.2",
-    "@types/babel__register": "^7.17.0",
+    "@appium/tsconfig": "0.2.4",
+    "@appium/types": "0.10.0",
     "@types/bluebird": "^3.5.36",
     "@types/chai": "^4.3.1",
     "@types/chai-as-promised": "^7.1.5",
     "@types/lodash": "^4.14.182",
     "@types/mocha": "^9.1.1",
+    "@types/node": "18.14.6",
     "@types/sinon-chai": "^3.2.8",
     "@types/teen_process": "^1.16.1",
-    "appium": "^2.0.0-beta.46",
+    "appium": "2.0.0-beta.56",
     "axios": "^0.27.2",
-    "babel-plugin-source-map-support": "^2.2.0",
     "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
     "eslint": "^7.24.0",
@@ -109,16 +98,17 @@
     "rimraf": "^3.0.2",
     "sinon": "^14.0.0",
     "sinon-chai": "^3.7.0",
-    "type-fest": "^2.19.0",
-    "typescript": "^4.7.4",
+    "ts-node": "10.9.1",
+    "type-fest": "3.6.0",
+    "typescript": "4.9.5",
     "webdriverio": "7.25.1"
   },
   "peerDependencies": {
     "appium": "^2.0.0-beta.40"
   },
   "engines": {
-    "node": ">=14",
-    "npm": ">=6"
+    "node": "^14.17.0 || ^16.13.0 || >=18.0.0",
+    "npm": ">=8"
   },
   "appium": {
     "driverName": "webos",

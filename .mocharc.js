@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = {
-  require: [require.resolve('./test/setup.js')],
-  color: true,
-  timeout: '3s'
+  require: ['ts-node/register', "test/setup.js"],
+  timeout: '2s',
+  slow: '1s',
+  'forbid-only': Boolean(process.env.CI),
 };

@@ -3,7 +3,12 @@
 module.exports = (wallaby) => {
   return {
     compilers: {
-      '**/*.js': wallaby.compilers.babel(),
+      '**/*.js': wallaby.compilers.typeScript({
+        allowJs: true,
+        allowSyntheticDefaultImports: true,
+        resolveJsonModule: true,
+        isolatedModules: true,
+      })
     },
     debug: true,
     env: {

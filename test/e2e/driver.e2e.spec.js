@@ -53,7 +53,7 @@ describe('WebOSDriver - E2E', function() {
   });
 
   describe('session with pre-installed app id', function() {
-    /** @type {WebdriverIO.Browser} */
+    /** @type {import('webdriverio').Browser<'async'>} */
     let driver;
 
     /**
