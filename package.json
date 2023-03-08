@@ -42,7 +42,7 @@
     "prepare": "husky install && npm run build",
     "test": "npm run test:unit",
     "test:e2e": "mocha --timeout 40s --slow 10s \"./test/e2e/**/*.spec.js\"",
-    "test:unit": "mocha \"./test/unit/**/*.spec.js\""
+    "test:unit": "mocha --timeout 5s \"./test/unit/**/*.spec.js\""
   },
   "lint-staged": {
     "*.{md,yml,ts}": [
