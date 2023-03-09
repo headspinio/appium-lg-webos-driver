@@ -8,18 +8,19 @@ module.exports = (wallaby) => {
         allowSyntheticDefaultImports: true,
         resolveJsonModule: true,
         isolatedModules: true,
-      })
+      }),
+      '**/*.ts?(x)': wallaby.compilers.typeScript(),
     },
     debug: true,
     env: {
       type: 'node',
     },
     files: [
-      './lib/**/*.js'
+      './lib/**/*.{js,ts}'
     ],
     testFramework: 'mocha',
     tests: [
-      './test/unit/**/*.spec.js',
+      './test/unit/**/*.spec.{js,ts}',
     ],
     runMode: 'onsave',
     workers: {recycle: true},

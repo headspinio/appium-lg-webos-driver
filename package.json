@@ -66,6 +66,7 @@
     "env-paths": "2.2.1",
     "get-port": "^5.1.1",
     "lodash": "^4.17.21",
+    "slugify": "1.6.5",
     "teen_process": "^1.9.0",
     "ws": "^8.8.1"
   },
