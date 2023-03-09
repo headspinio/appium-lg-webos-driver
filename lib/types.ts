@@ -1,7 +1,8 @@
-import { AppiumLogger } from '@appium/types';
+import {AppiumLogger} from '@appium/types';
 import {JsonPrimitive, SetRequired, Writable} from 'type-fest';
-import { KnownKey } from './keys';
-import { AuthPayload, MessageType } from './remote/constants';
+import {KnownKey} from './keys';
+import {AuthPayload, MessageType} from './remote/constants';
+import {ValueBox} from './remote/valuebox';
 
 /**
  * Extra caps that cannot be inferred from constraints.
@@ -17,7 +18,7 @@ export interface InboundMsg<P extends SerializableObject = any> extends Outbound
   error?: string;
 }
 
-export interface OutboundMsg<P extends SerializableObject|void = void> {
+export interface OutboundMsg<P extends SerializableObject | void = void> {
   id: `${MessageType}_${number}`;
   type: MessageType;
   uri?: string;
@@ -25,16 +26,16 @@ export interface OutboundMsg<P extends SerializableObject|void = void> {
 }
 
 export interface PromptMsg extends InboundMsg<{pairingType: 'PROMPT'}> {
-  type: 'response'
+  type: 'response';
 }
 
 export interface RegisteredMsg extends InboundMsg<SetRequired<AuthPayload, 'client-key'>> {
-  type: 'registered'
+  type: 'registered';
 }
 
 /**
  * A plain object which can be serialized to JSON.
- * 
+ *
  * Makes readonly types writable.
  */
 export type SerializableObject = {
@@ -71,7 +72,9 @@ export interface PressKeyOptions {
 }
 
 export interface LGSocketClientOpts {
+  deviceName: string;
   url: string;
+  valueBox: ValueBox;
   clientKey?: string;
   log?: AppiumLogger;
   clientKeyFile?: string;
