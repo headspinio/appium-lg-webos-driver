@@ -1,6 +1,4 @@
 {
-  "extends": "@appium/eslint-config-appium",
-  "overrides": [
-    {"files": "lib/scripts.js", "env": {"browser": true}}
-  ]
+  "extends": ["@appium/eslint-config-appium-ts"],
+  "overrides": [{"files": "lib/scripts.js", "env": {"browser": true}}]
 }
