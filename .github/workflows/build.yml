@@ -13,16 +13,16 @@ jobs:
         node-version: [14.x, 16.x, 18.x]
 
     steps:
-      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@eeb10cff27034e7acf239c5d29f62154018672fd # tag=v3
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - name: Install latest npm
         run: npm install -g npm
       - name: Install dependencies
-        uses: bahmutov/npm-install@cb39a46f27f14697fec763d60fb23ad347e2befa # tag=v1
+        uses: bahmutov/npm-install@v1
         with:
           useRollingCache: true
       - name: Run unit tests
@@ -32,9 +32,9 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+      - uses: actions/checkout@v3
       - name: Install dependencies
-        uses: bahmutov/npm-install@cb39a46f27f14697fec763d60fb23ad347e2befa # tag=v1
+        uses: bahmutov/npm-install@v1
         with:
           useRollingCache: true
       - name: ESLint
