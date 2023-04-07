@@ -59,6 +59,7 @@
     "singleQuote": true
   },
   "dependencies": {
+    "@appium/strongbox": "0.1.0",
     "@humanwhocodes/env": "^2.2.0",
     "@types/ws": "^8.5.3",
     "appium-chromedriver": "^5.1.1",
