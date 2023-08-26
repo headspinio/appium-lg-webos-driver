@@ -17,7 +17,7 @@ package in your `package.json`)
 
 ## Additional Requirements
 
-- You must have the [LG webOS SDK](https://webostv.developer.lge.com/sdk/webos-tv-sdk/introduction/)
+- You must have the [LG webOS SDK](https://webostv.developer.lge.com/develop/tools/sdk-introduction)
 - You must have the `LG_WEBOS_TV_SDK_HOME` env var set as described in the SDK setup guide
 - You must have an LG webOS TV device on the same network as your Appium host, with all ports accessible to the network
 - The TV must be in [Developer Mode](https://webostv.developer.lge.com/develop/app-test/using-devmode-app/) (must have the Dev Mode app and be signed in, with Dev Mode actually turned "On" in the app)
