@@ -138,7 +138,7 @@ Currently, the E2E tests require the use of an app not bundled with the project.
 downloaded from [Suitest](https://suite.st) at this location:
 [webos.ipk](https://file.suite.st/watchmedemo/packages/webos.ipk).
 
-Two environment variables must be set before running `npm run test:e2e`:
+Some environment variables must be set before running `npm run test:e2e`:
 
 - `TEST_APP`: the path on your local system to the IPK file.
 - `TEST_DEVICE`: the name of the LG device as it is shown when connected via `ares-setup-device`.
