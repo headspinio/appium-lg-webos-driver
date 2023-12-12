@@ -37,6 +37,8 @@ package in your `package.json`)
 |`appium:debuggerPort`|[Optional; default `9998`] The port on the device exposed for remote Chromium debugging.|
 |`appium:chromedriverExecutable`|[Optional] Most LG TVs run a very old version of Chrome. Because this driver uses Chromedriver under the hood, you'll need to have a very old version of Chromedriver handy that works with the version of Chrome backing the apps on your TV. In our testing, we've found Chromedriver 2.36 to work with most TVs. You need to tell the driver where you've installed this version of Chromedriver using the `appium:chromedriverExecutable` capability, passing in an absolute path to the Chromedriver binary.|
 |`appium:websocketPort`|[Optional; default `3000`] The websocket port on the device exposed for remote control|
+|`appium:websocketPortSecure`|[Optional; default `3001`] The secure websocket port on the device exposed for remote control|
+|`appium:websocketSecure`|[Optional; default `false`] Flag that enables use of `websocketPortSecure` port, also starts WebSocket over https instead. **DISCLAMER** Enabling this flag, it is required to set environment variable `export NODE_TLS_REJECT_UNAUTHORIZED=0`, which can be a potential security risk.|
 |`appium:autoExtendDevMode`|[Optional; default `true`] Whether you want Appium to extend the dev mode timer on the device whenever a new session starts.|
 |`appium:appLaunchParams`|[Optional; default `{}`] A key/value object of app launch param to be passed to `ares-launch`|
 |`appium:appLaunchCooldown`|[Optional; default `3000`] How many ms to wait after triggering app launch to attempt to connect to it via Chromedriver.|
