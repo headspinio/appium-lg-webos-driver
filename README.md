@@ -23,7 +23,7 @@ package in your `package.json`)
 - The TV must be in [Developer Mode](https://webostv.developer.lge.com/develop/getting-started/developer-mode-app) (must have the Dev Mode app and be signed in, with Dev Mode actually turned "On" in the app)
 - You must have your TV device set up and showing as available using the [`ares-setup-device`](https://www.webosose.org/docs/tools/sdk/cli/cli-user-guide/#ares-setup-device) CLI tool
 - You should be able to run `ares-device-info --device <name>` and have it show the correct details for your connected device
-- You must accept a popup with Developer Mode view in a new session request manually once. It might shoe up again after a while.
+- The first time you run an Appium session, the driver will attempt to pair itself with the TV as a remote. A permission popup will appear that you need to interact with. You should only need to do this once. If the driver is reinstalled, its permission token cache is removed, or the TV is updated (and potentially even some other circumstances) re-pairing might be necessary.
 
 ## Capabilities
 
