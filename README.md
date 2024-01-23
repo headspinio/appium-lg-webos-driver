@@ -20,9 +20,10 @@ package in your `package.json`)
 - You must have the [LG webOS SDK](https://webostv.developer.lge.com/develop/tools/sdk-introduction)
 - You must have the `LG_WEBOS_TV_SDK_HOME` env var set as described in the SDK setup guide
 - You must have an LG webOS TV device on the same network as your Appium host, with all ports accessible to the network
-- The TV must be in [Developer Mode](https://webostv.developer.lge.com/develop/app-test/using-devmode-app/) (must have the Dev Mode app and be signed in, with Dev Mode actually turned "On" in the app)
+- The TV must be in [Developer Mode](https://webostv.developer.lge.com/develop/getting-started/developer-mode-app) (must have the Dev Mode app and be signed in, with Dev Mode actually turned "On" in the app)
 - You must have your TV device set up and showing as available using the [`ares-setup-device`](https://www.webosose.org/docs/tools/sdk/cli/cli-user-guide/#ares-setup-device) CLI tool
 - You should be able to run `ares-device-info --device <name>` and have it show the correct details for your connected device
+- The first time you run an Appium session, the driver will attempt to pair itself with the TV as a remote. A permission popup will appear that you need to interact with. You should only need to do this once. If the driver is reinstalled, its permission token cache is removed, or the TV is updated (and potentially even some other circumstances) re-pairing might be necessary.
 
 ## Capabilities
 
@@ -38,7 +39,7 @@ package in your `package.json`)
 |`appium:chromedriverExecutable`|[Optional] Most LG TVs run a very old version of Chrome. Because this driver uses Chromedriver under the hood, you'll need to have a very old version of Chromedriver handy that works with the version of Chrome backing the apps on your TV. In our testing, we've found Chromedriver 2.36 to work with most TVs. You need to tell the driver where you've installed this version of Chromedriver using the `appium:chromedriverExecutable` capability, passing in an absolute path to the Chromedriver binary.|
 |`appium:websocketPort`|[Optional; default `3000`] The websocket port on the device exposed for remote control|
 |`appium:websocketPortSecure`|[Optional; default `3001`] The secure websocket port on the device exposed for remote control|
-|`appium:useSecureWebsocket`|[Optional; default `false`] Flag that enables use of `websocketPortSecure` port, also starts WebSocket over https instead. **DISCLAMER** Enabling this flag, it is required to set environment variable `export NODE_TLS_REJECT_UNAUTHORIZED=0`, which can be a potential security risk.|
+|`appium:useSecureWebsocket`|[Optional; default `false`] Flag that enables use of `websocketPortSecure` port, also starts WebSocket over https instead. **DISCLAIMER** Enabling this flag, it is required to set environment variable `export NODE_TLS_REJECT_UNAUTHORIZED=0`, which can be a potential security risk. A new session request might get `unable to get local issuer certificate` error message.|
 |`appium:autoExtendDevMode`|[Optional; default `true`] Whether you want Appium to extend the dev mode timer on the device whenever a new session starts.|
 |`appium:appLaunchParams`|[Optional; default `{}`] A key/value object of app launch param to be passed to `ares-launch`|
 |`appium:appLaunchCooldown`|[Optional; default `3000`] How many ms to wait after triggering app launch to attempt to connect to it via Chromedriver.|
