@@ -1,6 +1,6 @@
 import path from 'node:path';
 import rewiremock from 'rewiremock/node';
-import type {ValueBox, ValueWrapper} from '../../lib/remote/valuebox';
+import type {ValueBox} from '../../lib/remote/valuebox';
 import {createSandbox, SinonSandbox, SinonStubbedMember} from 'sinon';
 import type fs from 'node:fs/promises';
 
@@ -13,7 +13,7 @@ describe('ValueBox', function () {
   let ValueBox: ValueBox;
   let sandbox: SinonSandbox;
   let DEFAULT_SUFFIX: string;
-  let MockFs: MockFs = {} as any;
+  const MockFs: MockFs = {} as any;
 
   const DATA_DIR = '/some/dir';
 
