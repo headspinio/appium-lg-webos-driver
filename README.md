@@ -74,6 +74,8 @@ list):
 |webOS Command|Parameters|Description|
 |-------------|----------|-----------|
 |`pressKey`|`key`, `duration`|Press a remote key for `duration` milliseconds (defaults to 100). The value of `key` must be one of the values listed below|
+|`listApps`| |Return the list of installed applications. `id` key in each value is `appium:appId`. |
+|`activeAppInfo`| |Return current foreground application information.|
 
 Example of using a webOS command (in the WebdriverIO JS client):
 
@@ -81,11 +83,11 @@ Example of using a webOS command (in the WebdriverIO JS client):
 await driver.executeScript('webos: pressKey', [{key: 'right', duration: 200}]);
 ```
 
-### webOS Press Key keys
+#### webos: pressKey
 
 Here are the accepted values, based on the `appium:rcMode`. Casing does not matter.
 
-#### When `appium:rcMode` is `js`:
+##### When `appium:rcMode` is `js`:
 
 - `enter`
 - `right`
@@ -97,7 +99,7 @@ Here are the accepted values, based on the `appium:rcMode`. Casing does not matt
 - `fwd`
 - `rev`
 
-#### When `appium:rcMode` is `rc`:
+##### When `appium:rcMode` is `rc`:
 
 - `HOME`
 - `LEFT`
@@ -116,6 +118,59 @@ Here are the accepted values, based on the `appium:rcMode`. Casing does not matt
 - `FF`
 - `CHAN_UP`
 - `CHAN_DOWN`
+
+#### webos: listApps
+
+Response example:
+
+```ruby
+# Ruby
+apps = driver.execute_script "webos: listApps"
+#=> [{"networkStableTimeout"=>0,
+# "checkUpdateOnLaunch"=>true,
+# "requiredPermissions"=>["all"],
+# "class"=>{"hidden"=>true},
+# "title"=>"AirPlay",
+# "allowWidget"=>false,
+# "icon"=>"https://192.168.21.67:3001/resources/6a7d9dd6e94e6fb1d69163ada80efe8c6540efa8/AirPlay_Icon-77x77.png",
+# "tileSize"=>"normal",
+# "inAppSetting"=>false,
+# "closeOnRotation"=>false,
+# "nativeLifeCycleInterfaceVersion"=>2,
+# "folderPath"=>"/usr/palm/applications/airplay",
+# "transparent"=>false,
+# "version"=>"1.0.0",
+# "trustLevel"=>"trusted",
+# "hasPromotion"=>false,
+# "enableCBSPolicy"=>false,
+# "lockable"=>true,
+# "systemApp"=>true,
+# "mediumLargeIcon"=>"AirPlay_Icon-115x115.png",
+# "main"=>"LunaExecutable",
+# ...
+# ]
+apps.map { |app| app["id"]}
+# => ["airplay",
+#  "amazon",
+#  "amazon.alexa.view",
+#  "amazon.alexapr",
+#  "com.apple.appletv",
+#  "com.disney.disneyplus-prod",
+#  "com.fubotv.app",
+#  ...
+# ]
+
+```
+
+#### webos: activeAppInfo
+
+Response example:
+
+```ruby
+# Ruby
+driver.execute_script "webos: activeAppInfo"
+#=> {"returnValue"=>true, "appId"=>"com.suitest.watchme.app", "processId"=>"", "windowId"=>""}
+```
 
 ## Development
 
