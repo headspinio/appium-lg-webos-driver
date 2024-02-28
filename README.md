@@ -74,7 +74,7 @@ list):
 |webOS Command|Parameters|Description|
 |-------------|----------|-----------|
 |`pressKey`|`key`, `duration`|Press a remote key for `duration` milliseconds (defaults to 100). The value of `key` must be one of the values listed below|
-|`listApps`| |Return the list of installed applications. `id` key in each value is `appium:appId`. |
+|`listApps`| |Return the list of installed applications. The `id` key in each value is `appium:appId`. |
 |`activeAppInfo`| |Return current foreground application information.|
 
 Example of using a webOS command (in the WebdriverIO JS client):
