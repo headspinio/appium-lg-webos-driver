@@ -169,7 +169,7 @@ Response example:
 ```ruby
 # Ruby
 driver.execute_script "webos: activeAppInfo"
-#=> {"returnValue"=>true, "appId"=>"com.suitest.watchme.app", "processId"=>"", "windowId"=>""}
+#=> {"returnValue"=>true, "appId"=>"com.your.app", "processId"=>"", "windowId"=>""}
 ```
 
 ## Development
