@@ -2,7 +2,7 @@ import {AppiumLogger} from '@appium/types';
 import {JsonPrimitive, SetRequired, Writable} from 'type-fest';
 import {KnownKey} from './keys';
 import {AuthPayload, MessageType} from './remote/constants';
-import {ValueBox} from './remote/valuebox';
+import type {Strongbox} from '@appium/strongbox';
 
 /**
  * Extra caps that cannot be inferred from constraints.
@@ -76,7 +76,7 @@ export interface LGSocketClientOpts {
   url: string;
   urlSecure: string;
   useSecureWebsocket: boolean;
-  valueBox: ValueBox;
+  strongbox: Strongbox;
   clientKey?: string;
   log?: AppiumLogger;
   clientKeyFile?: string;
