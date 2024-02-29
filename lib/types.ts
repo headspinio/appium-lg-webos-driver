@@ -74,6 +74,8 @@ export interface PressKeyOptions {
 export interface LGSocketClientOpts {
   deviceName: string;
   url: string;
+  urlSecure: string;
+  useSecureWebsocket: boolean;
   strongbox: Strongbox;
   clientKey?: string;
   log?: AppiumLogger;
