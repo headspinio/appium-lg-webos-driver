@@ -29,8 +29,8 @@ package in your `package.json`)
 
 |Capability|Description|
 |----------|-----------|
-|`platformName`|[Required] Must be `LGTV`|
-|`appium:automationName`|[Required] Must be `webOS`|
+|`platformName`|[Required] Must be `lgtv`|
+|`appium:automationName`|[Required] Must be `webos`|
 |`appium:deviceName`|[Required] The name of the connected device, as it shows up in `ares-launch --device-list`|
 |`appium:deviceHost`|[Required] The IP address of the connected device, as it shows up in `ares-launch --device-list`|
 |`appium:appId`|[Required] The app package ID, if you want Appium to use an app already on the TV. Exclusive with `appium:app`|
