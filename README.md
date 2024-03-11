@@ -36,7 +36,8 @@ package in your `package.json`)
 |`appium:appId`|[Required] The app package ID, if you want Appium to use an app already on the TV. Exclusive with `appium:app`|
 |`appium:app`|[Optional] An absolute path to your `.ipk` app file, if you want Appium to install the app.|
 |`appium:debuggerPort`|[Optional; default `9998`] The port on the device exposed for remote Chromium debugging.|
-|`appium:chromedriverExecutable`|[Optional] Most LG TVs run a very old version of Chrome. Because this driver uses Chromedriver under the hood, you'll need to have a very old version of Chromedriver handy that works with the version of Chrome backing the apps on your TV. In our testing, we've found Chromedriver 2.36 to work with most TVs. You need to tell the driver where you've installed this version of Chromedriver using the `appium:chromedriverExecutable` capability, passing in an absolute path to the Chromedriver binary.|
+|`appium:chromedriverExecutable`(*)|[Optional] Most LG TVs run a very old version of Chrome. Because this driver uses Chromedriver under the hood, you'll need to have a very old version of Chromedriver handy that works with the version of Chrome backing the apps on your TV. In our testing, we've found Chromedriver 2.36 to work with most TVs. You need to tell the driver where you've installed this version of Chromedriver using the `appium:chromedriverExecutable` capability, passing in an absolute path to the Chromedriver binary.|
+| `appium:chromedriverExecutableDir`(*) | [Optional] Full path to the folder where chromedriver executables are located. This folder is used then to store the downloaded chromedriver executables if automatic download is enabled with `chromedriver_autodownload` security flag. Please read [Automatic Discovery of Compatible Chromedriver in appium-uiautomator2-driver](https://github.com/appium/appium-uiautomator2-driver?tab=readme-ov-file#automatic-discovery-of-compatible-chromedriver) for more details. |
 |`appium:websocketPort`|[Optional; default `3000`] The websocket port on the device exposed for remote control|
 |`appium:websocketPortSecure`|[Optional; default `3001`] The secure websocket port on the device exposed for remote control|
 |`appium:useSecureWebsocket`|[Optional; default `false`] Flag that enables use of `websocketPortSecure` port, also starts WebSocket over https instead. **DISCLAIMER** Enabling this flag, it is required to set environment variable `export NODE_TLS_REJECT_UNAUTHORIZED=0`, which can be a potential security risk. A new session request might get `unable to get local issuer certificate` error message.|
@@ -48,6 +49,9 @@ package in your `package.json`)
 |`appium:remoteOnly`|[Optional; default `false`] If this is set to `true`, the driver will not attempt to start Chromedriver and communicate via the debug protocol to the application. Instead the app will be launched, and nothing else. You will only have access to remote control commands in a "fire-and-forget" fashion. Useful when dealing with non-web-based apps.|
 |`appium:rcMode`|[Optional; default `js`; must be `rc` or `js`] When the value is `js`, the `webos: pressKey` command will operate with JS executed via Chromedriver. Otherwise, keys will be sent using the websocket remote control API. Note that when `appium:remoteOnly` is set to true, the value of `appium:rcMode` will always behave as if set to `rc`.|
 |`appium:keyCooldown`|[Optional; default `750`] How long to wait in between remote key presses|
+
+(*) `appium:chromedriverExecutable` or `appium:chromedriverExecutableDir` are required. The chromedriver autodwonload works only when `appium:chromedriverExecutableDir` is provided.
+If both capabilities are given, `appium:chromedriverExecutableDir` will be prior.
 
 ## Supported Commands
 
