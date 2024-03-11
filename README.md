@@ -51,7 +51,7 @@ package in your `package.json`)
 |`appium:keyCooldown`|[Optional; default `750`] How long to wait in between remote key presses|
 
 (*) `appium:chromedriverExecutable` or `appium:chromedriverExecutableDir` are required. The chromedriver autodwonload works only when `appium:chromedriverExecutableDir` is provided.
-If both capabilities are given, `appium:chromedriverExecutableDir` will be prior.
+If both capabilities are given, `appium:chromedriverExecutableDir` will take priority.
 
 ## Supported Commands
 
