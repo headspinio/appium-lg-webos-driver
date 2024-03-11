@@ -56,6 +56,7 @@
     "bluebird": "^3.7.2",
     "env-paths": "2.2.1",
     "get-port": "^5.1.1",
+    "got": "^11.8.6",
     "lodash": "^4.17.21",
     "slugify": "1.6.5",
     "teen_process": "^1.9.0",

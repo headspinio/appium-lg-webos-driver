@@ -50,7 +50,9 @@ export type Serializable = SerializableObject | Serializable[] | JsonPrimitive;
 export interface StartChromedriverOptions {
   debuggerHost: string;
   debuggerPort: number;
-  executable: string;
+  executable?: string;
+  executableDir?: string;
+  isAutodownloadEnabled: boolean;
 }
 
 /**
