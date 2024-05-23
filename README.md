@@ -1,5 +1,7 @@
 # Appium LG WebOS Driver
 
+[![npm version](https://img.shields.io/npm/v/appium-lg-webos-driver.svg)](https://npmjs.org/package/appium-lg-webos-driver)
+
 An Appium 2.x driver for LG WebOS apps
 
 ⚠️  UNDER ACTIVE DEVELOPMENT ⚠️
