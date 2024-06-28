@@ -139,13 +139,16 @@ describe('WebOSDriver', function () {
       const driver = new WebOSDriver();
       const browserInfo = {
         'Browser': '',
-        'Protocol-Version': '1.3',
-        'User-Agent': 'Mozilla/5.0 (Web0S; Linux/SmartTV) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
-        'V8-Version': '8.7.220.(29*1000 + 2)',
-        'WebKit-Version': '537.36 (@cec52f3dd4465dd7389298b97ab723856c556bd)',
-        'webSocketDebuggerUrl': 'ws://192.168.0.1:9998/devtools/browser/a4b3786c-2d2f-4751-9e05-aee2023bc226'
+        'Protocol-Version': '1.1',
+        'User-Agent': '',
+        'WebKit-Version': '537.36 (@fa89da905405aab455e0f0d4ec7f49631c7ca70b)'
       };
-      driver.fixChromeVersionForAutodownload(browserInfo).should.eql(browserInfo);
+      driver.fixChromeVersionForAutodownload(browserInfo).should.eql({
+        'Browser': 'Chrome/63.0.3239.0',
+        'Protocol-Version': '1.1',
+        'User-Agent': '',
+        'WebKit-Version': '537.36 (@fa89da905405aab455e0f0d4ec7f49631c7ca70b)'
+      });
     });
 
     it('Use the given chrome version', function () {
