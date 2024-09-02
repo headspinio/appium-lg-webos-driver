@@ -211,10 +211,13 @@ Some environment variables must be set before running `npm run test:e2e`:
 
 ## release
 
+This repository is released with regular npm command:
+
 ```
 npm version patch # etc
 npm publish
 # push the local commit and tag to this repository
+```
 
 ## Credits
 
