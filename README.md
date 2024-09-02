@@ -208,3 +208,14 @@ Some environment variables must be set before running `npm run test:e2e`:
 - `TEST_APP`: the path on your local system to the IPK file.
 - `TEST_DEVICE`: the name of the LG device as it is shown when connected via `ares-setup-device`.
 - `TEST_DEVICE_HOST`: the IP address of the connected LG TV.
+
+## release
+
+```
+npm version patch # etc
+npm publish
+# push the local commit and tag to this repository
+
+## Credits
+
+* Development for this driver is sponsored by [HeadSpin](https://headspin.io).
