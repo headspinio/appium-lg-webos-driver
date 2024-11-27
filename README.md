@@ -68,6 +68,7 @@ Some commands may not make sense in a TV context (dealing with multiple windows,
 |`createSession`|`capabilities`|Start a session using capabilities from the list above. This will launch your app in debug mode and start a Chromedriver proxy to the underyling TV browser|
 |`deleteSession`||Stop a session|
 |`executeScript`|`script`, `args`|In the typical case, this executes JavaScript within the browser, just like the typical WebDriver method. If the script is prefixed with `webos: `, the driver will attempt to find a special "webOS command" to run with your provided args.|
+|`getCurrentContext`|| Return `NATIVE_APP` context name. |
 
 ### webOS Commands
 
