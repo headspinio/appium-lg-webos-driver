@@ -53,6 +53,7 @@ export interface StartChromedriverOptions {
   executable?: string;
   executableDir?: string;
   isAutodownloadEnabled: boolean;
+  verbose?: boolean;
 }
 
 /**
