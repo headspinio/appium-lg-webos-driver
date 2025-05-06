@@ -37,7 +37,7 @@ package in your `package.json`)
 |`appium:deviceName`|[Required] The name of the connected device, as it shows up in `ares-launch --device-list`|
 |`appium:deviceHost`|[Required] The IP address of the connected device, as it shows up in `ares-launch --device-list`|
 |`appium:appId`|[Required] The app package ID, if you want Appium to use an app already on the TV. Exclusive with `appium:app`|
-|`appium:app`|[Optional] An absolute path to your `.ipk` app file, if you want Appium to install the app.|
+|`appium:app`|[Optional] A path to your `.ipk` app file if you want Appium to install the app. This can either be an absolute path or a https url to where the file is located on the internet.|
 |`appium:debuggerPort`|[Optional; default `9998`] The port on the device exposed for remote Chromium debugging.|
 | `appium:newCommandTimeout` | How long (in seconds) the driver should wait for a new command from the client before assuming the client has stopped sending requests. After the timeout the session is going to be deleted. `60` seconds by default. Setting it to zero disables the timer.|
 | `appium:showChromedriverLog` 	  | If set to `true` then all the output from chromedriver binary will be forwarded to the Appium server log. `false` by default. |
