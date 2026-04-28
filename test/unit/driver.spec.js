@@ -8,21 +8,9 @@ describe('WebOSDriver', function () {
   /** @type {sinon.SinonSandbox} */
   let sandbox;
 
-  /** @type {{Env: sinon.SinonStub<void[], {require: sinon.SinonStub<[string],string>}>}} */
-  let MockEnv;
-
   beforeEach(function () {
     sandbox = createSandbox();
-
-    MockEnv = {
-      Env: sandbox.stub().returns({
-        require: sandbox.stub().returns('/some/path'),
-      }),
-    };
-
-    ({WebOSDriver} = rewiremock.proxy(() => require('../../lib/driver'), {
-      '@humanwhocodes/env': MockEnv,
-    }));
+    ({WebOSDriver} = rewiremock.proxy(() => require('../../lib/driver'), {}));
   });
 
   afterEach(function () {
@@ -162,6 +150,65 @@ describe('WebOSDriver', function () {
         'webSocketDebuggerUrl': 'ws://192.168.0.1:9998/devtools/browser/a4b3786c-2d2f-4751-9e05-aee2023bc226'
       };
       driver.fixChromeVersionForAutodownload(browserInfo).should.eql(browserInfo);
+    });
+  });
+
+  describe('executeMethodMap', function () {
+    it('should contain the new activateApp command', function () {
+      WebOSDriver.executeMethodMap.should.have.property('webos: activateApp');
+      WebOSDriver.executeMethodMap['webos: activateApp'].command.should.equal('activateApp');
+      WebOSDriver.executeMethodMap['webos: activateApp'].params.required.should.include('appPackage');
+      WebOSDriver.executeMethodMap['webos: activateApp'].params.optional.should.include('launchParams');
+    });
+
+    it('should contain the new getElementInfo command', function () {
+      WebOSDriver.executeMethodMap.should.have.property('webos: getElementInfo');
+      WebOSDriver.executeMethodMap['webos: getElementInfo'].command.should.equal('getElementInfo');
+      WebOSDriver.executeMethodMap['webos: getElementInfo'].params.required.should.include('elementId');
+    });
+
+    it('should contain the new getFocusedElement command', function () {
+      WebOSDriver.executeMethodMap.should.have.property('webos: getFocusedElement');
+      WebOSDriver.executeMethodMap['webos: getFocusedElement'].command.should.equal('getFocusedElement');
+    });
+  });
+
+  describe('isExecuteScript', function () {
+    it('should identify original script names', function () {
+      WebOSDriver.isExecuteScript('webos: pressKey').should.be.true;
+      WebOSDriver.isExecuteScript('webos: listApps').should.be.true;
+      WebOSDriver.isExecuteScript('webos: activeAppInfo').should.be.true;
+    });
+
+    it('should identify new script names', function () {
+      WebOSDriver.isExecuteScript('webos: activateApp').should.be.true;
+      WebOSDriver.isExecuteScript('webos: getElementInfo').should.be.true;
+      WebOSDriver.isExecuteScript('webos: getFocusedElement').should.be.true;
+    });
+
+    it('should reject unknown script names', function () {
+      WebOSDriver.isExecuteScript('webos: invalidCommand').should.be.false;
+      WebOSDriver.isExecuteScript('randomScript').should.be.false;
+      WebOSDriver.isExecuteScript('').should.be.false;
+    });
+  });
+
+  describe('activateApp', function () {
+    it('should throw InvalidArgumentError when appPackage is not provided', async function () {
+      const driver = new WebOSDriver();
+      await driver.activateApp('').should.be.rejectedWith('appPackage parameter is required');
+    });
+
+    it('should throw InvalidArgumentError when appPackage is null', async function () {
+      const driver = new WebOSDriver();
+      await driver.activateApp(null).should.be.rejectedWith('appPackage parameter is required');
+    });
+  });
+
+  describe('pressKeyViaRemote', function () {
+    it('should throw when socketClient and remoteClient are not set', async function () {
+      const driver = new WebOSDriver();
+      await driver.pressKeyViaRemote('HOME').should.be.rejectedWith('Remote control is not available');
     });
   });
 });
